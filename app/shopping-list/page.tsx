@@ -2,7 +2,7 @@
 import AutocompleteSearchBar from "@/components/autocompleteSearchBar"
 import { Table } from '@mantine/core';
 import { useState, useEffect } from "react";
-
+import LocationHeader from "@/components/locationHeader";
 interface ShoppingItem {
     name: string;
     price: number;
@@ -68,7 +68,7 @@ export default function Page() {
     }, [shoppingList, totalTax]);
 
     return (
-        <div className="container mx-auto px-4 md:px-12 md:pt-2">
+        <div className="container mx-auto px-4 md:px-12 md:pt-2">            
             <AutocompleteSearchBar />
 
             <div className="text-3xl text-green font-manrope font-bold pt-10 pb-10">
