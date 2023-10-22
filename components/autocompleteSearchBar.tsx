@@ -88,21 +88,23 @@ export default function AutocompleteSearchBar() {
   }, [selectedProductIndex]);
 
   return (
-    <div className="flex flex-col mt-20 mx-auto relative">
-      <div className="flex flex-row space-x-2">
-      <SearchInput
-        value={query}
-        onChange={handleQueryChange}
-        onKeyDown={handleKeyDown}
-        inputRef={inputRef}
-        placeholder="Enter product..."
-      />
-
-      <button type="submit" className="bg-green fit text-white px-6 py-3 rounded-md text-lg">
-        + Add
-      </button>
+    <div className="flex flex-col mt-10 mx-auto relative items-center">
+      <div className="flex flex-row space-x-2 w-full">
+        <SearchInput
+          value={query}
+          onChange={handleQueryChange}
+          onKeyDown={handleKeyDown}
+          inputRef={inputRef}
+          placeholder="Enter product..."
+        />
+  
+        <button
+          type="submit"
+          className="bg-green w-36 text-white mx-10 py-3 rounded-md text-lg"
+        >
+          + Add
+        </button>
       </div>
-
       {query !== "" && searchResults.length > 0 && (
         <ProductList
           products={searchResults}
