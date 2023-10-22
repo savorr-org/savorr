@@ -99,6 +99,30 @@ export default function Page() {
             </Table.Td>
         </Table.Tr>
     ));
+    const recipesList = [
+        { name: 'Applenut Krunch' },
+        { name: 'Chicken Alfredo' },
+    ];
+
+    const recipes = recipesList.map((item, index) => (
+        <>
+        <div className="flex flex-row font-manrope font-bold justify-between">
+            <div className="flex flex-row justify-center items-center space-x-3">
+            <span>{item.name}</span>
+            <svg width="30" height="30" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="41" height="41" rx="8" fill="#69C34A"/>
+                <path d="M13.5 11.9C9.91015 11.9 7 14.8102 7 18.4C7 21.0654 8.60433 23.3561 10.9 24.3592V27.825H29.1V24.3592C31.3957 23.3561 33 21.0654 33 18.4C33 14.8102 30.0898 11.9 26.5 11.9C26.1743 11.9 25.8543 11.9239 25.5414 11.9702C24.7585 9.66148 22.5732 8 20 8C17.4268 8 15.2415 9.66148 14.4586 11.9702C14.1457 11.9239 13.8257 11.9 13.5 11.9Z" fill="white"/>
+                <path d="M29.0978 29.775H10.9022C10.9154 31.591 11.0085 32.5855 11.6615 33.2385C12.423 34 13.6487 34 16.1 34H23.9C26.3513 34 27.5769 34 28.3385 33.2385C28.9916 32.5855 29.0845 31.591 29.0978 29.775Z" fill="white"/>
+            </svg>
+            </div>
+
+            <button className="bg-green w-36 text-white mx-8 py-2 rounded-md text-lg">
+                Add to list
+            </button>
+        </div>
+        <br/>
+        </>
+    ));
 
     const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const newQuantity = parseInt(e.target.value);
@@ -154,6 +178,20 @@ export default function Page() {
                     </div>
                 </div>
             </div>
+
+
+            <div className="text-3xl text-green font-manrope font-bold pt-10 pb-10">
+                Recipes
+            </div>
+
+            <div className="flex flex-col">
+            {recipes}
+            </div>
+
+            <button className="bg-green text-white py-2 rounded-md text-lg w-full mt-10 mb-20 font-manrope font-bold">
+                Start Savor
+            </button>
+
         </div>
     );
 }
