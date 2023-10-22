@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import vision from "@google-cloud/vision";
 
+const apiKey = process.env.GOOGLE_SERVICE_KEY;
+
 const credential = JSON.parse(
-  Buffer.from(process.env.GOOGLE_SERVICE_KEY, "base64").toString()
+  Buffer.from(apiKey!, "base64").toString()
 );
 
 const client = new vision.ImageAnnotatorClient({
@@ -19,6 +21,8 @@ const link = "https://media.licdn.com/dms/image/D5603AQGooiAw6TVqBA/profile-disp
 // TODO: request for image
 // TODO: return 1 name with highest confidence
 export async function GET() {
+  if (!client.objectLocalization) return NextResponse.json({ data: ''});
+
   const [result] = await client.objectLocalization(link);
   const objects = result.localizedObjectAnnotations;
 
