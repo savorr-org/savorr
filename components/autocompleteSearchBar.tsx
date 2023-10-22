@@ -19,7 +19,11 @@ type Product = {
   name: string;
 };
 
-const AutocompleteSearchBar: React.FC<AutocompleteSearchBarProps> = ({onAddToShoppingList}) => {
+type Props = {
+  onAddToShoppingList: React.Dispatch<React.SetStateAction<AutocompleteSearchBarProps>>
+}
+
+export default function AutocompleteSearchBar ({onAddToShoppingList}: Props) {
   const [query, setQuery] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProductIndex, setSelectedProductIndex] = useState<number>(-1);
@@ -147,5 +151,3 @@ const AutocompleteSearchBar: React.FC<AutocompleteSearchBarProps> = ({onAddToSho
     </div>
   );
 };
-
-export default AutocompleteSearchBar;
