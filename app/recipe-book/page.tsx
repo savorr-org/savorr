@@ -15,8 +15,8 @@ type Props = {
 
 function RecipeCard ({ recipe }: any) {
   return (
-    <div className="max-w-md mx-auto bg-white shadow-md rounded-md p-4">
-      <h2 className="text-xl font-bold mb-4">{recipe.name}</h2>
+    <div className="max-w-md mx-auto bg-white shadow-md rounded-md p-4 w-full">
+      <h2 className="text-center text-xl font-bold mb-4">{recipe.name}</h2>
       <div className="mb-4">
         <h3 className="text-lg font-semibold">Ingredients</h3>
         <ul className="list-disc ml-4">
@@ -24,11 +24,11 @@ function RecipeCard ({ recipe }: any) {
             const text = `${ingredient.name} - ${ingredient.quantity}`;
 
             return (
-              <li key={index}>
-                {text} 
+              <li key={index} className='flex justify-between items-center'>
+                <div>{text}</div>
                 <ul>
                   {ingredient.alternatives && <span className='font-bold'>Alternatives</span>}
-                  {ingredient.alternatives?.map((alternative: string, altIndex: number)=> <li key={altIndex}>{alternative}</li>)}
+                  {ingredient.alternatives?.map((alternative: string, altIndex: number)=> <li key={altIndex} className="text-right">{alternative}</li>)}
                 </ul>
               </li>
             );
