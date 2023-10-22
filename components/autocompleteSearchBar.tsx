@@ -21,12 +21,11 @@ type Product = {
   name: string;
   averagePrice: number;
   cheapestPrice: number;
+  cheapestName: string;
 };
 
 type Props = {
-  onAddToShoppingList: React.Dispatch<
-    React.SetStateAction<AutocompleteSearchBarProps>
-  >;
+  onAddToShoppingList: (product: Product) => void
 };
 
 export default function AutocompleteSearchBar({ onAddToShoppingList }: Props) {
