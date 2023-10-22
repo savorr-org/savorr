@@ -13,18 +13,22 @@ const link = "https://media.licdn.com/dms/image/D5603AQGooiAw6TVqBA/profile-disp
 // TODO: request for image
 // TODO: return 1 name with highest confidence
 export async function GET() {
-  const client = new vision.ImageAnnotatorClient({
-    projectId: credential.project_id,
-    credentials: {
-      client_email: credential.client_email,
-      private_key: credential.private_key
-    }
-  });
+  try {
+    const client = new vision.ImageAnnotatorClient({
+      projectId: credential.project_id,
+      credentials: {
+        client_email: credential.client_email,
+        private_key: credential.private_key
+      }
+    });
 
-  if (!client.objectLocalization) return NextResponse.json({ data: ''});
+    if (!client.objectLocalization) return NextResponse.json({ data: ''});
 
-  const [result] = await client.objectLocalization(link);
-  const objects = result.localizedObjectAnnotations;
+    const [result] = await client.objectLocalization(link);
+    const objects = result.localizedObjectAnnotations;
 
-  return NextResponse.json({ data: objects });
+    return NextResponse.json({ data: objects });
+  } catch (error){
+    return NextResponse.json({ data: ''}); 
+  }
 }
