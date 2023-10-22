@@ -3,6 +3,7 @@ import React, { useState, ChangeEvent } from 'react';
 interface Ingredient {
   name: string;
   quantity: string;
+  alternatives?: string[];
 }
 
 export default function RecipeForm ({recipes, setRecipes}: any) {
@@ -29,9 +30,23 @@ export default function RecipeForm ({recipes, setRecipes}: any) {
     setIngredients(updatedIngredients);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to the server
+
+    for (const ingredient of ingredients) {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({grocery: ingredient.name})
+      };
+      const response = await fetch('/api/suggestions', options);
+      const { data } = await response.json();
+
+      ingredient.alternatives = data;
+    }
+    setIngredients(ingredients)
     setRecipes([...recipes, { name: recipeName, ingredients }]);
   };
 

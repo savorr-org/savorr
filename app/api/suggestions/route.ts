@@ -1,4 +1,4 @@
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -6,8 +6,10 @@ const openai = new OpenAI({
 });
 
 // TODO: return array of suggestions for each item
-export async function GET() {
-  const grocery = "peanut butter";
+export async function POST(req: NextRequest) {
+  const request = await req.json();
+  const grocery = request.grocery;
+
   const params: OpenAI.Chat.ChatCompletionCreateParams = {
     messages: [{ role: "user", content: `List 3 alternative grocery items to ${grocery}. Do not explain. Separate by a comma. All lowercase.` }],
     model: "gpt-3.5-turbo",

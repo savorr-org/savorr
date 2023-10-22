@@ -3,6 +3,12 @@ import Modal from '@/components/recipeModal';
 import Link from 'next/link';
 import { useState } from 'react';
 
+interface Ingredient {
+  name: string;
+  quantity: string;
+  alternatives?: string[];
+}
+
 type Props = {
   searchParams: Record<string, string> | null | undefined;
 };
@@ -14,11 +20,19 @@ function RecipeCard ({ recipe }: any) {
       <div className="mb-4">
         <h3 className="text-lg font-semibold">Ingredients</h3>
         <ul className="list-disc ml-4">
-          {recipe.ingredients.map((ingredient: any, index: any) => (
-            <li key={index}>
-              {ingredient.name} - {ingredient.quantity}
-            </li>
-          ))}
+          {recipe.ingredients.map((ingredient: Ingredient, index: number) => {
+            const text = `${ingredient.name} - ${ingredient.quantity}`;
+
+            return (
+              <li key={index}>
+                {text} 
+                <ul>
+                  {ingredient.alternatives && <span className='font-bold'>Alternatives</span>}
+                  {ingredient.alternatives?.map((alternative: string, altIndex: number)=> <li key={altIndex}>{alternative}</li>)}
+                </ul>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
