@@ -14,7 +14,13 @@ export async function GET() {
   };
 
   const completion = await openai.chat.completions.create(params);
-  const suggestions = completion.choices[0].message.content.split(/,\s*/);
+   
+  let suggestions = null;
+  if (completion.choices.length > 0) {
+    if (completion.choices[0].message.content) {
+      suggestions = completion.choices[0].message.content.split(/,\s*/);
+    }
+  }
 
   return NextResponse.json({ data: suggestions });
 }

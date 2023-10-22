@@ -26,6 +26,8 @@ export default function Page() {
             subtotal: element.price,
         }))
     );
+    const [totalTax, setTotalTax] = useState<number>(0);
+    const [totalAmount, setTotalAmount] = useState<number>(0);
 
     // Step 2: Render the shopping list with input fields
     const rows = shoppingList.map((item, index) => (
@@ -63,11 +65,7 @@ export default function Page() {
         total += totalTax
         setTotalAmount(total);
         setTotalTax(tax);
-    }, [shoppingList]);
-
-    const [totalTax, setTotalTax] = useState<number>(0);
-    const [totalAmount, setTotalAmount] = useState<number>(0);
-
+    }, [shoppingList, totalTax]);
 
     return (
         <div className="container mx-auto px-4 md:px-12 md:pt-2">
