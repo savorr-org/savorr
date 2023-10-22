@@ -21,13 +21,13 @@ function RecipeCard ({ recipe }: any) {
         <h3 className="text-lg font-semibold">Ingredients</h3>
         <ul className="list-disc ml-4">
           {recipe.ingredients.map((ingredient: Ingredient, index: number) => {
-            const text = `${ingredient.name} - ${ingredient.quantity}`;
+            const text = `${ingredient.name} x${ingredient.quantity} `;
 
             return (
               <li key={index} className='flex justify-between items-center'>
                 <div>{text}</div>
                 <ul>
-                  {ingredient.alternatives && <span className='font-bold'>Alternatives</span>}
+                  {ingredient.alternatives && <span className='font-bold text-green'>Alternatives</span>}
                   {ingredient.alternatives?.map((alternative: string, altIndex: number)=> <li key={altIndex} className="text-right">{alternative}</li>)}
                 </ul>
               </li>
