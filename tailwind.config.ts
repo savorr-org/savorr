@@ -20,7 +20,8 @@ const config: Config = {
         'light-gray': '#ebebeb',
         'white': '#FDFDFD',
         'black': '#000000',
-        'gray-input-box': '#EAEAEA'
+        'gray-input-box': '#EAEAEA',
+        'gray-new-item': '#A3A3A3',
       },
       fontFamily: {
         manrope: ['manrope', 'sans-serif'],

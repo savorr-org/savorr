@@ -1,75 +1,48 @@
-'use client';
-import AutocompleteSearchBar from '@/components/autocompleteSearchBar';
-import { Table } from '@mantine/core';
-import { useEffect } from 'react';
+'use client'
+import Modal from '@/components/recipeModal';
+import Link from 'next/link';
+import { useState } from 'react';
 
-export default function Page() {
-  let tokenFetched = false;
-  useEffect(() => {
-    const options = {
-      method: 'POST',
-      headers: {
-        grant_type: 'client_credentials',
-      },
-      body: JSON.stringify({
-        term: 'apple',
-        locationId: '03400320',
-        limit: '50',
-      }),
-    };
+type Props = {
+  searchParams: Record<string, string> | null | undefined;
+};
 
-    const optionsLocation = {
-      method: 'POST',
-      body: JSON.stringify({
-        zipcode: '78712',
-      }),
-    };
-
-    fetch('/api/kroger/price', options)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-    fetch('/api/kroger/location', optionsLocation)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }, []);
-
-  const shoppingListElements = [
-    { name: 'Honeycrisp Apple', price: 1.99 },
-    { name: 'Peanut Butter', price: 1.99 },
-    { name: 'Potato Kettle Chips', price: 1.99 },
-  ];
-
-  const rows = shoppingListElements.map((element) => (
-    <Table.Tr key={element.name}>
-      <Table.Td>{element.name}</Table.Td>
-      <Table.Td>{element.price}</Table.Td>
-      <Table.Td>
-        <input placeholder='1'></input>
-      </Table.Td>
-    </Table.Tr>
-  ));
-
+function RecipeCard ({ recipe }: any) {
   return (
-    <div className='container mx-auto px-4 md:px-12 md:pt-6'>
-      <div className='text-3xl text-green font-manrope font-bold pt-10'>
-        Shopping List
+    <div className="max-w-md mx-auto bg-white shadow-md rounded-md p-4">
+      <h2 className="text-xl font-bold mb-4">{recipe.name}</h2>
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold">Ingredients</h3>
+        <ul className="list-disc ml-4">
+          {recipe.ingredients.map((ingredient: any, index: any) => (
+            <li key={index}>
+              {ingredient.name} - {ingredient.quantity}
+            </li>
+          ))}
+        </ul>
       </div>
-
-      <Table>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Item(s)</Table.Th>
-            <Table.Th>Price</Table.Th>
-            <Table.Th>Quantity</Table.Th>
-            <Table.Th>Subtotal</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
     </div>
   );
+};
+
+export default function Page({ searchParams }: Props) {
+    const showModal = searchParams?.modal;
+
+    const [recipes, setRecipes] = useState([]);
+
+    return (
+        <>
+          <div className="container mx-auto px-4 md:px-12 md:pt-2"> 
+            <div className="text-3xl text-green font-manrope font-bold pt-10 pb-10">
+              Recipe Book
+              <Link href="/recipe-book/?modal=true" className="bg-green text-white text-xl py-2 px-8 ml-6 rounded">+ Add</Link>
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {recipes.map((recipe, index) => <RecipeCard key={index} recipe={recipe} />)}
+              {recipes.length == 0 && <>Empty.</>} 
+            </div>    
+          </div>
+          {showModal && <Modal recipes={recipes} setRecipes={setRecipes}/>}
+        </>
+    );
 }
