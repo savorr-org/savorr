@@ -15,6 +15,7 @@ A Next.js web application to save your money and savor your ingredients.
 ## Data Flow Diagrams
 
 Location Required for Store Locality
+
 ![Diagram 2](https://github.com/savorr-org/.github/blob/main/assets/diagram-2.png)
 
 Input to Item Text
