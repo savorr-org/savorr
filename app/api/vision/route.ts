@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import vision from "@google-cloud/vision";
 
-const apiKey = process.env.GOOGLE_SERVICE_KEY || 'ewogICJwcm9qZWN0X2lkIjogIiIsCiAgInByaXZhdGVfa2V5IjogIiIsCiAgImNsaWVudF9lbWFpbCI6ICIiCn0=';
+const apiKey = process.env.GOOGLE_SERVICE_KEY || 'ewogICJwcm9qZWN0X2lkIjogIiIsCiAgInByaXZhdGVfa2V5IjogIiIsCiAgImNsaWVudF9lbWFpbCI6ICJ2aXNpb25AdGVzdC1hcGktMzM5NzE5LmlhbS5nc2VydmljZWFjY291bnQuY29tIgp9';
 
 const credential = JSON.parse(
   Buffer.from(apiKey, "base64").toString()
