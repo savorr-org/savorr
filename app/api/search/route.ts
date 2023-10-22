@@ -13,6 +13,9 @@ export async function POST(req: NextRequest) {
   const apiUrl = `https://api.spoonacular.com/food/ingredients/search?number=5&query=${query}&apiKey=${apiKey}`;
   const response = await fetch(apiUrl);
   const data = await response.json();
+
+  if (!data.results) return NextResponse.json({ data: [] });
+
   const productNames = data.results.map((product: Product) => ({
     name: product.name
   }));
