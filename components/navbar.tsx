@@ -31,8 +31,8 @@ export default function Navbar() {
             <Link href="/shopping-list" className={`text-gray font-varela ${pathname === '/shopping-list' ? 'text-green underline underline-offset-8' : 'hover:text-green'}`}>
                 Shopping List
             </Link>
-            <Link href="/coupons" className={`text-gray font-varela ${pathname === '/coupons' ? 'text-green underline underline-offset-8' : 'hover:text-green'}`}>
-                Coupons
+            <Link href="/recipe-book" className={`text-gray font-varela ${pathname === '/recipe-book' ? 'text-green underline underline-offset-8' : 'hover:text-green'}`}>
+                Recipe Book
             </Link>
           </nav>
 
@@ -69,8 +69,8 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link href="/coupons">
-                  <span className="text-gray hover:text-green">Coupons</span>
+                <Link href="/recipe-book">
+                  <span className="text-gray hover:text-green">Recipe Book</span>
                 </Link>
               </li>
               <li>
