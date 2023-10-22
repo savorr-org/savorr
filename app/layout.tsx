@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { createContext } from 'react';
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
+
+// Import styles of packages that you've installed.
+// All packages except `@mantine/hooks` require styles imports
+import '@mantine/core/styles.css';
+import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,10 +23,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body className={inter.className}>
+        <MantineProvider>
         <Navbar />
-          <main className='py-10'>{children}</main>
+           <main className='py-10'>{children}</main>
         <Footer />
+        </MantineProvider>
       </body>
     </html>
   )

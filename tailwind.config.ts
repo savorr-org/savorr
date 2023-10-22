@@ -17,7 +17,8 @@ const config: Config = {
         'green': '#69C34A',
         'gray': '#474D41',
         'white': '#FDFDFD',
-        'black': '#000000'
+        'black': '#000000',
+        'gray-input-box': '#EAEAEA'
       },
       fontFamily: {
         manrope: ['manrope', 'sans-serif'],
