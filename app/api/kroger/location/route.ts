@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function getBearerToken() {
+async function getBearerToken() {
   const path = 'https://api.kroger.com/v1/connect/oauth2/token?';
   const clientInfo = Buffer.from(
     process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET,
