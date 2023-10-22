@@ -253,7 +253,7 @@ export default function Page() {
       <div className='flex flex-col'>{recipes}</div>
 
       <button onClick={() => setButtonClick(!buttonClick)} className='bg-green text-white py-2 rounded-md text-lg w-full mt-10 mb-20 font-manrope font-bold'>
-        Start Savor
+        Start Savorr
       </button>
     </div>
   );

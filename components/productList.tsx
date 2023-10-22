@@ -14,10 +14,10 @@ const ProductList: React.FC<ProductListProps> = ({
     handleProductClick,
     }) => {
     return (
-    <div className="bg-green max-h-96 overflow-y-scroll z-20 absolute top-14 w-10/12">
+    <div className="bg-white border-light-gray border-2 max-h-96 overflow-y-scroll z-20 absolute top-14 w-10/12">
     {products.map((product, index) => (
         <div
-        key={product.name}
+        key={`product.name-${index}`}
         id={`product-${index}`}
         className={`py-2 px-4 flex items-center justify-between gap-8 cursor-pointer ${
             selectedProductIndex === index ? "" : ""
