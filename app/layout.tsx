@@ -4,7 +4,6 @@ import './globals.css'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import LocationHeader from '@/components/locationHeader'
-import { usePathname } from 'next/navigation'
 
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
@@ -19,7 +18,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname()
 
   return (
     <html lang="en">
@@ -28,11 +26,11 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <MantineProvider>
-        {
-          pathname === '/shopping-list' ? <LocationHeader/> : <></>
-        }
+        
+        <LocationHeader/>
+        
         <Navbar />
-           <main className='py-10'>{children}</main>
+           <main className='py-10 bg-white'>{children}</main>
         <Footer />
         </MantineProvider>
       </body>
