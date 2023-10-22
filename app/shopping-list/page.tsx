@@ -26,6 +26,8 @@ export default function Page() {
         subtotal: element.price,
         }))
     );
+    const [totalTax, setTotalTax] = useState<number>(0);
+    const [totalAmount, setTotalAmount] = useState<number>(0);
 
     const [modalStates, setModalStates] = useState<boolean[]>(new Array(shoppingList.length).fill(false));
 
@@ -100,13 +102,10 @@ export default function Page() {
         total += totalTax
         setTotalAmount(total);
         setTotalTax(tax);
-    }, [shoppingList]);
-
-    const [totalTax, setTotalTax] = useState<number>(0);
-    const [totalAmount, setTotalAmount] = useState<number>(0);
+    }, [shoppingList, totalTax]);
 
     return (
-        <div className="container mx-auto px-4 md:px-12 md:pt-2">
+        <div className="container mx-auto px-4 md:px-12 md:pt-2">            
             <AutocompleteSearchBar />
 
             <div className="text-3xl text-green font-manrope font-bold pt-10 pb-10">

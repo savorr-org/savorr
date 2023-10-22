@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 export default function Navbar() {
 
     const pathname = usePathname()
-    const [activeLink, setActiveLink] = useState('');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
