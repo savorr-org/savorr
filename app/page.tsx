@@ -3,6 +3,10 @@ import Image from 'next/image'
 import CoverDesktop from '../public/images/Cover.png'
 import CoverMobile from '../public/images/Cover-mobile.png'
 import { useState } from 'react'
+import { Grid } from '@mantine/core';
+import Document from '../public/images/Document.png';
+import Money from '../public/images/Money.png';
+import Loop from '../public/images/Loop.png';
 
 export default function Home() {
   const [zipCode, setZipCode] = useState('');
@@ -26,7 +30,8 @@ export default function Home() {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <>
+    <div className="bg-white flex items-center justify-center">
       <div className="relative">
         <div className="hidden md:block">
           <Image src={CoverDesktop} alt="Cover image (desktop)" className="" />
@@ -60,5 +65,39 @@ export default function Home() {
         </div>
       </div>
     </div>
+
+
+    <div className="flex flex-col items-center justify-center container mx-auto px-4 md:px-12 md:pt-6 w-screen">
+      
+    <div className='font-varela pt-20 pb-10 text-4xl '>How it works</div>
+
+    <Grid className='md:pl-56'>
+      <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
+        <div className='flex flex-col items-center text-center'>
+          <Image src={Document} alt='document'/>
+
+          <span className='font-varela font-bold'>CREATE SHOPPING LIST</span>
+          <span className='font-varela'>Jot down a list of ingredients you are wanting to get at your local grocery store.</span>
+        </div>
+      </Grid.Col>
+      <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
+        <div className='flex flex-col items-center text-center'>
+        <Image src={Money} alt='money'/>
+
+        <span className='font-varela font-bold'>GET READY TO SAVORR</span>
+        <span className='font-varela'>When you’re ready to save, just click on the green Savorr button and wait for the magic.</span>
+        </div>
+      </Grid.Col>
+      <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
+        <div className='flex flex-col items-center text-center'>
+        <Image src={Loop} alt='loop'/>
+
+        <span className='font-varela font-bold'>REPEAT THE FUN</span>
+        <span className='font-varela'>Repeat as you go shopping! Shop smart and buy the items you need, at the lowest price available.</span>
+        </div>
+      </Grid.Col>
+    </Grid>
+    </div>
+    </>
   );
 }
