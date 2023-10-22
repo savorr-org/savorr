@@ -6,7 +6,6 @@ import SearchInput from "./searchInput";
 type Product = {
   name: string;
 };
-const apiKey = process.env.SPOONACULAR_API_KEY || ''; // Replace with your actual API key
 
 export default function AutocompleteSearchBar() {
   const [query, setQuery] = useState("");
@@ -16,29 +15,22 @@ export default function AutocompleteSearchBar() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const fetchProducts = async (query: string) => {
-      try {
-        console.log(apiKey)
-        const apiUrl = `https://api.spoonacular.com/food/ingredients/search?number=5&query=${query}&apiKey=${apiKey}`;
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        const productNames = data.results.map((product: Product) => ({
-          name: product.name
-        }));
-        setSearchResults(productNames);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({query})
     };
 
-    if (query) {
-      const timerId = setTimeout(() => fetchProducts(query), 300);
-      return () => clearTimeout(timerId);
-    } else {
-      setSearchResults([]); // Clear the results when the query is empty
+    fetch('/api/search', options)
+      .then((res) => res.json())
+      .then((data) => {
+        setSearchResults(data.data);
+      })
+
+    if (!query) {
+      setSearchResults([]);
     }
   }, [query]);
 
@@ -113,7 +105,6 @@ export default function AutocompleteSearchBar() {
           + Add
         </button>
       </div>
-  
       {query !== "" && searchResults.length > 0 && (
         <ProductList
           products={searchResults}

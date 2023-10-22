@@ -2,7 +2,14 @@
 
 ## Getting Started
 
-First, run the development server:
+Populate environment variables in `.env.local`:
+```bash
+OPENAI_KEY=
+SPOONACULAR_API_KEY=
+GOOGLE_SERVICE_KEY=
+```
+
+Run the development server:
 
 ```bash
 npm run dev
