@@ -11,12 +11,27 @@ interface ShoppingItem {
     subtotal: number;
 }
 
+type Product = {
+    name: string;
+  };
 export default function Page() {
     const shoppingListElements = [
         { name: 'Honeycrisp Apple', price: 1.99 },
         { name: 'Peanut Butter', price: 1.99 },
         { name: 'Potato Kettle Chips', price: 1.99 }
     ];
+
+    const handleAddToShoppingList = (product: Product) => {
+        // Create a new item based on the selected product and add it to the shopping list
+        const newItem: ShoppingItem = {
+          name: product.name,
+          price: 0, // Set the price of the product
+          quantity: 1,
+          subtotal: 0, // Calculate the subtotal based on the price and quantity
+        };
+    
+        setShoppingList((prevList) => [...prevList, newItem]);
+      };
 
     const [shoppingList, setShoppingList] = useState<ShoppingItem[]>(
         shoppingListElements.map((element) => ({
@@ -106,7 +121,7 @@ export default function Page() {
 
     return (
         <div className="bg-white container mx-auto px-4 md:px-12 md:pt-2">            
-            <AutocompleteSearchBar />
+            <AutocompleteSearchBar onAddToShoppingList={handleAddToShoppingList} />
 
             <div className="text-3xl text-green font-manrope font-bold pt-10 pb-10">
                 Shopping List

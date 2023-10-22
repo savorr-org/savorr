@@ -3,11 +3,23 @@ import { useState, useEffect, useRef } from "react";
 import ProductList from "./productList";
 import SearchInput from "./searchInput";
 
+interface ShoppingItem {
+  name: string;
+  price: number;
+  quantity: number;
+  subtotal: number;
+}
+
+interface AutocompleteSearchBarProps {
+  name: string, 
+  price: string
+}
+
 type Product = {
   name: string;
 };
 
-export default function AutocompleteSearchBar() {
+const AutocompleteSearchBar: React.FC<AutocompleteSearchBarProps> = ({onAddToShoppingList}) => {
   const [query, setQuery] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProductIndex, setSelectedProductIndex] = useState<number>(-1);
@@ -64,8 +76,16 @@ export default function AutocompleteSearchBar() {
     }
   };
 
-  const handleProductClick = (product: Product) => {
-    alert(`You selected ${product.name}`);
+  const handleProductClick = () => {
+    //alert(`You selected ${product.name}`);
+    alert(`You selected ${query}`)
+    if (query) {
+      onAddToShoppingList({
+        name: query, 
+        price: "1.99" // TODO: add price of item here
+      });
+    }
+
     setQuery("");
     setSelectedProductIndex(-1);
   };
@@ -99,8 +119,8 @@ export default function AutocompleteSearchBar() {
         />
   
         <button
-          type="submit"
           className="bg-green w-36 text-white mx-10 py-3 rounded-md text-lg"
+          onClick={() => handleProductClick()}
         >
           + Add
         </button>
@@ -115,3 +135,5 @@ export default function AutocompleteSearchBar() {
     </div>
   );
 };
+
+export default AutocompleteSearchBar;
