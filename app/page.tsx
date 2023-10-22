@@ -18,7 +18,8 @@ export default function Home() {
     }
   };
 
-  const handleZipCodeChange = (e) => {
+  // change any type
+  const handleZipCodeChange = (e: any) => {
     setZipCode(e.currentTarget.value);
     // Clear the error message when the user starts typing
     setZipCodeError('');
