@@ -17,7 +17,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   return (
     <input
       type="text"
-      className="px-6 py-1 focus:outline-none bg-gray-input-box w-10/12 rounded-md font-manrope"
+      className="px-6 py-1 focus:outline-none bg-gray-input-box rounded-md font-manrope flex-grow"
       value={value}
       onChange={onChange}
       onKeyDown={onKeyDown}
